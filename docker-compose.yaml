@@ -8,9 +8,10 @@ services:
     image: company_micro
     container_name: company_micro
     restart: unless-stopped
-    env_file: .env
+    env_file:
+      - .env
     ports:
-      - ${PORT}:${PORT}
+      - 8081:8081
     depends_on:
       - mongodb
 
@@ -18,12 +19,8 @@ services:
     image: mongo:4.4.6
     container_name: mongodb
     restart: unless-stopped
-    env_file: .env
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
     ports:
-      - ${DB_PORT}:${DB_PORT}
+      - 27017:27017
     volumes:
       - dbdata:/data/db
 

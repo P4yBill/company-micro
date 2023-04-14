@@ -24,7 +24,9 @@ type Env struct {
 
 func NewEnv() *Env {
 	env := Env{}
-	viper.AddConfigPath("/app/config") // <- to work with Dockerfile setu
+
+	viper.AddConfigPath(".")
+	viper.SetConfigFile(".env")
 
 	err := viper.ReadInConfig()
 	if err != nil {
@@ -35,7 +37,7 @@ func NewEnv() *Env {
 	if err != nil {
 		log.Fatal("Environment could not be loaded: ", err)
 	}
-
+	log.Println(env)
 	if env.AppEnv == "dev" {
 		log.Println("The App is running in development env")
 	}

@@ -30,7 +30,7 @@ func (lc *LoginController) Login(w http.ResponseWriter, r *http.Request) {
 	user, err := lc.LoginUsecase.GetUserByEmail(r.Context(), request.Email)
 	if err != nil {
 		log.Println("Error while retrieving user: ", err.Error())
-		render.Render(w, r, domain.NewErrResponse(http.StatusBadRequest, err, "Wrong email or password. Please use different credentials"))
+		render.Render(w, r, domain.NewGeneralErrResponse(http.StatusBadRequest, "Wrong email or password. Please use different credentials"))
 		return
 	}
 	fmt.Println(user)
@@ -43,13 +43,13 @@ func (lc *LoginController) Login(w http.ResponseWriter, r *http.Request) {
 
 	accessToken, err := lc.LoginUsecase.CreateAccessToken(&user, lc.Env.AccessTokenSecret, lc.Env.AccessTokenExpiryHour)
 	if err != nil {
-		render.Render(w, r, domain.NewErrResponse(http.StatusInternalServerError, err, "Bad token"))
+		render.Render(w, r, domain.NewGeneralErrResponse(http.StatusInternalServerError, "Something went wrong while creating token"))
 		return
 	}
 
 	refreshToken, err := lc.LoginUsecase.CreateRefreshToken(&user, lc.Env.RefreshTokenSecret, lc.Env.RefreshTokenExpiryHour)
 	if err != nil {
-		render.Render(w, r, domain.NewErrResponse(http.StatusInternalServerError, err, "Bad token"))
+		render.Render(w, r, domain.NewGeneralErrResponse(http.StatusInternalServerError, "Something went wrong while creating token"))
 		return
 	}
 

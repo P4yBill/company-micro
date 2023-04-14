@@ -133,7 +133,7 @@ func (cc *CompanyController) Patch(w http.ResponseWriter, r *http.Request) {
 
 	company, err := cc.CompanyUsecase.GetByName(r.Context(), request.Name)
 	if err != nil {
-		message := fmt.Sprintf("Unable to find specified company", request.Name)
+		message := fmt.Sprintf("Unable to find specified company %s", request.Name)
 		log.Printf(message)
 		render.Render(w, r, domain.NewGeneralErrResponse(http.StatusNotFound, message))
 		return
