@@ -14,6 +14,7 @@
 3. `$ docker-compose up`
 
 # Api Documention
+- Postman Documentation: https://documenter.getpostman.com/view/10727988/2s93Xx14qy
 
 ### Auth
 ---
