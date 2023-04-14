@@ -15,6 +15,7 @@
 #### Routes:
 - `/register` POST - Route for creating a user
 - `/login` POST - Logins a user
+- `/refresh` POST - Refresh's access token
 
 ##### Company Routes:
 - `/api/v1/company/{name}` GET - Gets the company with `{name}` in uri.
