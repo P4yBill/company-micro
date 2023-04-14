@@ -4,11 +4,11 @@
 - Go with chi router
 - Mongo db
 
-
 #### Run the app
 - In order to run the app:
-1. 	`$ docker-compose build`
-2. `$ docker-compose run`
+1. Include a `.env` file (or rename `.env.example` to `.env`)
+2. 	`$ docker-compose build`
+3. `$ docker-compose up`
 
 ## Api Documention
 
